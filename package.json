@@ -1,0 +1,26 @@
+{
+  "main": "keyboard-break.js",
+  "scripts": {
+    "start": "electron .",
+    "electron-version": "electron -v"
+  },
+  "devDependencies": {
+    "electron": "3.1.3",
+    "node-abi": "^2.7.0"
+  },
+  "iohook": {
+    "targets": [
+      "node-64",
+      "electron-64"
+    ],
+    "platforms": [
+      "win32"
+    ],
+    "arches": [
+      "x64"
+    ]
+  },
+  "dependencies": {
+    "iohook": "^0.3.1"
+  }
+}
