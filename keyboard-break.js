@@ -24,7 +24,7 @@ app.on('ready', () => {
   });
   win.setIgnoreMouseEvents(true);
 
-  //win.on('closed', () => win = null);
+  win.on('closed', () => win = null);
 
   win.loadFile('index.html');
   
@@ -34,7 +34,7 @@ app.on('ready', () => {
       keycount += 1;
       fs.writeFileSync(keycountFile, keycount);
       /* alert the front end */
-      win.webContents.send('keypressed', keycount);
+      win.webContents.send('keypressed', { keycount, keycode: e.keycode });
     });
 
     ioHook.start();

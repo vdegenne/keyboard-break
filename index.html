@@ -41,15 +41,15 @@
       const ipc = require('electron').ipcRenderer;
       const fs = require('fs');
 
-      const breakEvery = 20; // keystrokes
+      const breakEvery = 10; // keystrokes
       let keycount = parseInt(fs.readFileSync('.keycount'));
       count.innerText = keycount;
       let stepshold = Math.floor(keycount / breakEvery);
 
-      ipc.on('keypressed', (e, value) => {
-        keycount = value;
+      ipc.on('keypressed', (e, information) => {
+        keycount = information.keycount;
         count.innerText = keycount;
-
+        
         /* should make a break alert now */
         if (keycount >= (stepshold * breakEvery) + breakEvery) {
           count.classList.add('alert');
@@ -57,10 +57,8 @@
           alert('take a break');
           stepshold++;
         }
-      });
 
-      window.addEventListener('keydown', (e) => {
-        if (e.keyCode === 118) {
+        if (information.keycode === 63) {
           count.classList.remove('alert');
         }
       });
