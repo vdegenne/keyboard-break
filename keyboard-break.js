@@ -17,6 +17,7 @@ app.on('ready', () => {
   win = new BrowserWindow({
     // width: 150,
     // height: 100,
+    resizable: false,
     frame: false,
     transparent: true,
     fullscreen: true,
