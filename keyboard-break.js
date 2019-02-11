@@ -37,6 +37,6 @@ app.on('ready', () => {
       win.webContents.send('keypressed', keycount);
     });
 
-    ioHook.start(true);
+    ioHook.start();
   } catch (e) { /* pass ? */ }
 });
