@@ -41,25 +41,27 @@
       const ipc = require('electron').ipcRenderer;
       const fs = require('fs');
 
-      const breakEvery = 700; // keystrokes
+      const breakEvery = 1000; // keystrokes
       let keycount = parseInt(fs.readFileSync('.keycount'));
       count.innerText = keycount;
-      let stepshold = Math.floor(keycount / breakEvery);
+      let sessionCount = 0;
 
       ipc.on('keypressed', (e, information) => {
         keycount = information.keycount;
         count.innerText = keycount;
+        sessionCount++;
         
         /* should make a break alert now */
-        if (keycount >= (stepshold * breakEvery) + breakEvery) {
-          count.classList.add('alert');
-          
+        if (sessionCount === breakEvery) {
           alert('take a break');
-          stepshold++;
+        }
+        if (sessionCount >= breakEvery) {
+          count.classList.add('alert');
         }
 
         if (information.keycode === 63) {
           count.classList.remove('alert');
+          sessionCount = 0;
         }
       });
     </script>
