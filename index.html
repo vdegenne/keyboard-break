@@ -41,7 +41,7 @@
       const ipc = require('electron').ipcRenderer;
       const fs = require('fs');
 
-      const breakEvery = 1000; // keystrokes
+      const breakEvery = 2000; // keystrokes
       let keycount = parseInt(fs.readFileSync('.keycount'));
       count.innerText = keycount;
       let sessionCount = 0;
